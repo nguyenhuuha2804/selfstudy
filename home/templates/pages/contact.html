@@ -1,0 +1,72 @@
+{% extends 'pages/base.html' %}
+{% load static%}
+{% load fontawesome %}
+
+{% block title%}Liên hệ{% endblock title %}
+
+{% block signup %}
+    {% include 'include/sigin.html'%}
+{% endblock signup %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item active breadcrumb-item-home" aria-current="page">Liên hệ</li>
+{% endblock breadcrumb %}
+
+{% block newpost %}
+{% for obj in post_new %}
+<a style="text-decoration:none;color:black" href="{% url 'blog:post_detail' slug=obj.slug %}">{% fontawesome_icon 'angle-double-right' color="red"%}  {{obj.title}}</a>
+{% endfor %}
+{% endblock newpost%}
+
+
+{% block content%}
+<div class="col-md-8 text-center">
+    <div class="card my-4">
+        <div class="card-header">
+        <h1 class="h4">THÔNG TIN LIÊN HỆ</h1>
+        </div>
+        <div class="float-center m-4">
+            <img src="{% static 'images/mrxinnian.jpg'%}" class="rounded-circle " width="120px" height="150px">
+            <h2 class="card-title h4">Ha Nguyen Huu</h2>
+        </div>
+        
+        <div class="card-body">
+        
+        <div class="row">
+            <div class="col-md-6 text-left ">
+                <p class="card-text m-0">Nickname:huuha84</p>
+                <p class="card-text m-0">Email: huuha84@gmail.com</p> 
+                <h4 class="m-2">Personal information</h4>
+                <p class="card-text m-0">Gentle: Male</p>
+                <p class="card-text m-0">Description: "Two heads are better than one"</p> 
+                <p class="card-text m-0">Hobbies: Books, Games, Travelling...</p> 
+            </div>
+            <div class="col-md-6 text-left">
+                <h4 class="m-2">Job</h4>
+                <p class="card-text m-0">Job Position: Software Developer, Engineer</p>
+                <p class="card-text m-0">Company: I'm working as a freelancer</p>
+                <h4 class="m-2">Social</h4>
+                <a>{% fontawesome_icon 'facebook-square' large=True%} HaNguyenHuu</a> 
+                <br>
+                <a>{% fontawesome_icon 'youtube-square' large=True%} HuuHaNguyen</a>
+                <br>
+                <a>{% fontawesome_icon 'twitter-square' large=True%} HuuHaNguyen</a>
+                <br>
+                <a>{% fontawesome_icon 'github' large=True%} Github</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <p>Website này là nơi để tôi truyền cảm hứng lập trình đến các bạn muốn học và tự học làm trang web cho bản thân mình. Bản thân tôi cũng là 1 người ngoại đạo, và luôn tham vọng tự mình viết lên 1 trang web cho bản thân. Hi vọng các bạn cùng tham gia đóng góp, và thảo luận cùng tôi.</p>
+        </div>
+        <div class="card-footer text-right">
+            <a href="#" class="btn btn-primary">Liên hệ --></a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block slidebar %}
+{% include 'include/slidebar.html'%}
+{% endblock slidebar %}

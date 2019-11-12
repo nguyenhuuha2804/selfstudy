@@ -1,0 +1,42 @@
+{% extends 'backend/base_backend.html' %}
+{% block title%}Quản lý bài viết{% endblock title %}
+{% block content %}
+<div class="container blog-main w-100"> 
+    <br>
+    <h1 class="h4 text-center">QUẢN LÝ BÀI VIẾT</h4>
+    <hr>
+    <div>
+        <a href="{% url 'blog:new_post' %}" class="btn btn-success">Tạo bài viết mới</a>
+    </div>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">PK</th>
+                <th scope="col">Post Title</th>
+                <th scope="col">Slug</th>
+                <th scope="col">SEO title</th>
+                <th scope="col">SEO Description</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{item.pk}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.slug}}</td>
+                    <td>{% if item.seo_title %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if item.seo_description %}Yes{% else %}No{% endif %}</td>
+                    <td><a href="{% url 'blog:edit_post' pk=item.pk %}"><button class="btn btn-warning"><span data-feather="edit"></span></button></a></td>
+                    <td><a href="{% url 'blog:delete_post' pk=item.pk %}"><button class="btn btn-danger"><span data-feather="trash-2"></span></button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% include 'include/pagination.html'%}
+{% endblock content %}

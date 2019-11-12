@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load fontawesome %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock title %}</title>
+    {% fontawesome_stylesheet %}
+    
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+    <style>
+        #scrollToTop, #scrollToBottom {
+            cursor: pointer;
+            background-color: #014590; /* Đổi màu nền ở đây */
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            color: #fff; /* Đổi màu mũi tên ở đây */
+            font-size: 16pt;
+            text-align: center;
+            text-decoration: none;
+            line-height: 40px;
+            position: fixed;
+            right: 0; /* Đổi khoảng cách so với lề phải ở đây, nếu muốn hiện ở lề trái thì đổi thành left */
+            bottom: 25px; /* Khoảng cách từ nút cho tới chân trang */
+            display:none;
+        }
+        #scrollToTop {
+            bottom: 75px;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0yLjUgMEwxIDEuNSAzLjUgNCAxIDYuNSAyLjUgOGw0LTQtNC00eiIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+) !important;
+        }
+        .carousel {
+            margin-bottom: 0;
+            padding: 0 40px 30px 40px;
+        }
+        /* The controlsy */
+        .carousel-control {
+            left: -12px;
+            height: 40px;
+            width: 40px;
+            background: none repeat scroll 0 0 #222222;
+            border: 4px solid #FFFFFF;
+            border-radius: 23px 23px 23px 23px;
+            margin-top: 90px;
+        }
+        .carousel-control.right {
+            right: -12px;
+        }
+        /* The indicators */
+        .carousel-indicators {
+            right: 50%;
+            top: auto;
+            bottom: -10px;
+            margin-right: -19px;
+        }
+        /* The colour of the indicators */
+        .carousel-indicators li {
+            background: #cecece;
+        }
+        .carousel-indicators .active {
+        background: #428bca;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(to right, rgba(207,231,250,1) 0%,rgba(3,21,124,1) 100%);padding: 0 16px 0 16px">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="{% static 'images/logo_web.svg' %}" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">TRANG CHỦ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:category_detail' slug='giai-tri' %}">GIẢI TRÍ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:category_detail' slug='thu-vien' %}">THƯ VIỆN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">LIÊN HỆ</a>
+                    </li>
+                    
+                    <!-- Trigger the modal with a Sigin button -->
+                    {% if request.user.is_authenticated%}
+                    <a class="nav-item" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:30px">{% fontawesome_icon 'user-circle-o' large=True color='green'%}</a>
+                    <!-- Modal -->
+                    {% else %}
+                    <a class="nav-item" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:30px">{% fontawesome_icon 'user-circle-o' large=True color='red' %}</a>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="myModalsigup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <div class="modal-title">
+                        <h2 data-feather="user" width="50" height="50" color="red" class="d-inline p-2 h4"></h2>
+                        <h4 class="d-inline p-2">TÀI KHOẢN</h4>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    {% block signup%}{% endblock signup%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" style="margin-top:8px;margin-bottom:4px ">
+
+            <div class="col-lg-12">
+                <div id="Carousel" class="carousel slide p-0">
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="item active carousel-item">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_01.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_02.png'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_03.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_04.jpg'%}" width="260" height="150"></a>
+                                </div>
+                            </div>
+                            <!--.row-->
+                        </div>
+                        <!--.item-->
+                        <div class="item carousel-item">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_02.png'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_03.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_04.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_05.jpg'%}" width="260" height="150"></a>
+                                </div>
+                            </div>
+                              <!--.row-->
+                        </div>
+                            <!--.item-->
+                        <div class="item carousel-item">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_03.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_04.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_05.jpg'%}" width="260" height="150"></a>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="#" class="thumbnail"><img src="{% static 'images/pic_06.jpeg'%}" width="260" height="150"></a>
+                                </div>
+                            </div>
+                              <!--.row-->
+                        </div>
+                            <!--.item-->
+                    </div>
+                    <!--.carousel-inner-->
+                    <a class="carousel-control-prev" href="#Carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#Carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--.Carousel-->
+            </div>
+        </div>
+        <nav aria-label="breadcrumb row">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active breadcrumb-item-home" aria-current="page">
+                    <a style="color:black" href="{% url 'home' %}">{% fontawesome_icon 'home' large=True%}</a>
+                </li>
+                {% block breadcrumb %}{% endblock breadcrumb %}
+            </ol>
+        </nav>
+    </div>
+    <!-- Breadcrumb -->
+    <div class="container">
+    <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="4" direction="right" style="background:#ffd593">{% block newpost %}{% endblock newpost%}</marquee>
+    </div>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Content Column -->
+            {% block content %}{% endblock content%}
+
+            <!-- Sidebar Widgets Column -->
+            {% block slidebar %}{% endblock slidebar%}
+            
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">©2019 Selfstudy.tk All Rights Reserved.</p>
+        </div>
+        <!-- /.container -->
+        
+        <a href="javascript:;" id="scrollToBottom">&#x25BC;</a>
+        <a href="javascript:;" id="scrollToTop">&#x25B2;</a>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/feather.min.js' %}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".content-markdown").each(function(){
+            var content=$(this).text()
+            console.log(content)
+            var markedContent=marked(content)
+            console.log(markedContent)
+            $(this).html(markedContent)
+            })
+            $(".content-markdown img").each(function(){
+            $(this).addClass("img-responsive");
+            })
+            $(".comment-reply-btn").click(function(event){
+            event.preventDefault();
+            $(this).parent().next(".comment-reply").fadeToggle();
+            })
+        });
+        feather.replace()
+    </script>
+    <script type = "text/javascript">
+        $(function () {
+            $('#scrollToBottom').bind("click", function () {
+                $('html, body').animate({ scrollTop: $(document).height() }, 1200);
+                return false;
+            });
+            $('#scrollToTop').bind("click", function () {
+                $('html, body').animate({ scrollTop: 0 }, 1200);
+                return false;
+            });
+        });
+        $(window).bind("scroll", function () {
+            if ($(this).scrollTop() > 0) {
+                $('#scrollToTop').show();
+                $('#scrollToBottom').show();
+            } else {
+                $('#scrollToTop').hide();
+                $('#scrollToBottom').hide();
+            }
+        });
+
+        $(document).ready(function() {
+            $('#Carousel').carousel({
+                interval: 12000
+            })
+        });   
+    </script>
+</body>
+
+</html>

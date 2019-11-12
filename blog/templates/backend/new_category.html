@@ -1,0 +1,32 @@
+{% extends 'backend/base_backend.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title%}Tạo chủ đề mới{% endblock title %}
+{% block content%}
+<div class="container blog-main w-100"> 
+        <div class="card-header m-4 p-2 text-center">
+            <h1 class="h4">Tạo chuyên mục mới</h1>
+        </div>
+        
+        <div class="card-body rounded-lg text-left">
+            {% if messages %}
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="True">x</span ></button>
+                    <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+            {% else %}
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    {{ form }}
+                </div>
+                
+                <button class="m-4 btn btn-success" type="submit">Lưu</button>
+            </form>
+            {% endif %}
+        </div>
+</div>
+{% endblock %}

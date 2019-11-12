@@ -1,0 +1,99 @@
+{% load static%}
+{% load fontawesome %}
+
+<div class="col-md-4">
+    <!-- Gioi thieu -->
+    <div class="card my-4 bg-light">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{% static 'images/logo_web.svg'%}" width="100%" height="100%">
+                </div>
+                <div class="col-md-8">
+                    <ul class="list-unstyled mb-0">
+                        <li class="font-weight-bold">Thống kê lượng truy cập:</li>
+                        <li class="text-center m-2"><span class="bg-secondary font-weight-bold p-2 text-white">00000{{max_view.views__max}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Tìm kiếm</h5>
+        <div class="card-body">
+            {% include 'include/search.html' %}
+        </div>
+    </div>
+
+    <!-- Categories Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Chuyên mục</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        {% for obj in category %}
+                        <li>
+                            <a href="{% url 'blog:category_detail' slug=obj.slug%}">{{obj}}</a>  
+                            <span class="badge badge-success">{{obj.posts_count}}</span> 
+                        </li>
+                        {% if forloop.counter|divisibleby:category_count and not forloop.first %}
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        {% endif %}
+                        <li>
+                            {% if forloop.last %}  
+                        </li> 
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Bài viết mới</h5>
+        <div class="card-body p-0">
+            <ul class="list-unstyled mb-0 p-0">
+                {% for obj in post %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    
+                    <a href="{% url 'blog:post_detail' slug=obj.slug%}">{% fontawesome_icon 'chevron-circle-right'%} {{obj.title}}</a>
+                    <span class="badge badge-primary badge-pill">{{obj.published|timesince}} ago</span> 
+                </li>
+                {% endfor %}  
+            </ul>
+        </div>
+    </div>
+    <!--Slide Advertisment-->
+    <div class="card my-4">
+        <svg class="bd-placeholder-img rounded" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="30%" y="50%" fill="#eceeef" dy=".3em">Khung quang cao</text></svg>
+    </div>
+    <!-- Side Widget -->
+
+    <div class="card my-4">
+        <h5 class="card-header">Liên kết</h5>
+        <div class="card-body">
+            <ul class="list-unstyled mb-0" style="margin-left: 40px ">
+                <li>
+                    <a href="">{% fontawesome_icon 'facebook-square' large=True%} Facebook</a>
+                </li>
+                <li>
+                    <a href="">{% fontawesome_icon 'youtube-square' large=True%} Youtube</a>
+                </li>
+                <li>
+                    <a href="">{% fontawesome_icon 'twitter-square' large=True%} Twister</a>
+                </li>
+                <li>
+                    <a href="">{% fontawesome_icon 'github' large=True%} Github</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
