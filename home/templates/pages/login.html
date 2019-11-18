@@ -34,25 +34,31 @@
     <link href="{% static 'css/signin.css'%}" rel="stylesheet">
 </head>
 <body class="text-left">
-    <form class="form-signin shadow-lg rounded-lg bg-white" method="POST" enctype="multipart/form-data">
+    <form class="form-signin" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="text-center">
             <img class="mb-4" src="{% static 'images/logo_web.svg'%}" alt="" width="122" height="122">
-            <h2 class="h3 mb-3 font-weight-normal">Đăng nhập tài khoản</h2>
+            <h2 class="h3 mb-3 font-weight-normal">ĐĂNG NHẬP TÀI KHOẢN</h2>
         </div>
-        {{ form|crispy }}
+        <input type="text" name="username" class="form-control m-2" placeholder="Ten tai khoan" required autofocus>
+        <input type="password" name="password" class="form-control m-2" placeholder="Mat khau" required autofocus>
         <div class="row">
             <div class="checkbox float-left col-md-6">
                 <label>
-                    <input type="checkbox" value="remember-me">Lưu thông tin
+                    <input class="m-2" type="checkbox" value="remember-me">Lưu thông tin
                 </label>
             </div>     
             <div class="col-md-6">
-                <a class="float-right" href="">Quên mật khẩu?</a>
+                <a class="float-right m-2" href="">Quên mật khẩu?</a>
             </div>
         </div>
+        <div>
+            {% for message in messages %}
+            <p class="alert alert-warning" role="alert">{{message}}</p>
+            {% endfor %}
+        </div>
         <div class="text-center">
-            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Đăng nhập">
+            <input type="submit" class="btn btn-lg btn-primary btn-block m-2" value="Đăng nhập">
             <p class="mt-3 mb-3" >Bạn chưa có tài khoản? <a href="{% url 'register' %}">Đăng ký</a></p>
             <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
         </div>

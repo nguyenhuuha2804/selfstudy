@@ -35,18 +35,26 @@
     <link href="{% static 'css/signin.css'%}" rel="stylesheet">
 </head>
 <body class="text-left">
-    <form class="form-signin shadow-lg rounded-lg bg-white" method="POST" enctype="multipart/form-data">
+    <form class="form-signin" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="text-center">
             <img class="mb-4" src="{% static 'images/logo_web.svg'%}" alt="" width="122" height="122">
         </div>
-        
-        <h2 class="h3 mb-3 font-weight-normal text-center">Đăng ký tài khoản</h2>
-        {{ form|crispy }}
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Đăng ký">
-        
+        <h2 class="h3 mb-3 font-weight-normal text-center">ĐĂNG KÝ TÀI KHOẢN</h2>
+        <input type="text" class="form-control m-2" name="first_name" placeholder="First name" required autofocus>
+        <input type="text" class="form-control m-2" name="last_name" placeholder="Last name" required autofocus>
+        <input type="text" class="form-control m-2" name="username" placeholder="Ten tai khoan" required autofocus>
+        <input type="email" class="form-control m-2" name="email" placeholder="Dia chi email" required autofocus>
+        <input type="password" class="form-control m-2" name="password1" placeholder="Password" required autofocus>
+        <input type="password" class="form-control m-2" name="password2" placeholder="Nhap lai password" required autofocus>
+        <input type="submit" class="btn btn-lg btn-primary btn-block m-2" value="Đăng ký">
         <p class="mt-5 mb-3 text-center text-muted">&copy; 2017-2019</p>
     </form>
+    <div>
+      {% for message in messages %}
+      <p class="alert alert-warning" role="alert">{{message}}</p>
+      {% endfor %}
+    </div>
 </body>
 </html>
 
