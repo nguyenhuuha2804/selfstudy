@@ -1,7 +1,7 @@
 {% load fontawesome %}
 {% if not request.user.is_authenticated %}
     <p>Ban chua dang nhap vao tai khoan!</p>
-    <a class="btn-sm btn-primary text-decoration-none" href="{% url 'register' %}">Đăng ký</a>
+    <a class="btn-sm btn-primary text-decoration-none" href="{% url 'register' %}">{% fontawesome_icon 'user-plus' large=True %} Đăng ký</a>
     <a class="btn-sm btn-primary text-decoration-none" href="{% url 'login' %}">{% fontawesome_icon 'sign-in' large=True %} Đăng nhập</a>
 {% else %}
     <div class="card mb-3">
