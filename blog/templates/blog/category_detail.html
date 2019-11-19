@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item active breadcrumb-item-home" aria-current="page">{{category1}}</li>
+    <li class="breadcrumb-item active breadcrumb-item-home" aria-current="page"><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=category1.slug %}">{{category1}}</a></li>
 {% endblock breadcrumb %}
 
 {% block newpost %}

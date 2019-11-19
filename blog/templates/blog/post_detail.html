@@ -11,8 +11,8 @@
 
 
 {% block breadcrumb %}
-<li class="breadcrumb-item breadcrumb-item-home" aria-current="page">{{post1.category}}</li>
-<li class="breadcrumb-item active breadcrumb-item-home" aria-current="page">{{post1.title}}</li>
+<li class="breadcrumb-item breadcrumb-item-home" aria-current="page"><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</a></li>
+<li class="breadcrumb-item active breadcrumb-item-home" aria-current="page"><a style="text-decoration:none;color:black" href="{% url 'blog:post_detail' slug=post1.slug%}">{{post1.title}}</a></li>
 {% endblock breadcrumb %}
 
 {% block newpost %}
@@ -30,7 +30,7 @@
     <p class="d-inline p-2">{% fontawesome_icon 'user' %}  {{post1.author}}</p>
     <p class="d-inline p-2">{% fontawesome_icon 'eye' %} {{post1.views}}</p>
     <p class="d-inline p-2">{% fontawesome_icon 'clock-o' %} {{post1.published|date:"M d, Y"}}</p>
-    <p class="d-inline p-2">{% fontawesome_icon 'folder' %}<a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}"> {{post1.category}}</a></p>
+    <p class="d-inline p-2">{% fontawesome_icon 'folder' %}<a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</a></p>
 
     <hr>
     <!-- Preview Image -->
@@ -53,7 +53,7 @@
             <div class="card">
                 <img src="{{obj.image.url}}" class="card-img-top" style="max-width: 100%;">
                 <div class="card-body">
-                    <h5 class="card-title">{{obj.title}}</h5>
+                    <h5 class="card-title"><a href="{% url 'blog:post_detail' slug=obj.slug%}">{{obj.title}}</a></h5>
                     <p class="card-text"><small class="text-muted">Last updated: {{obj.published|timesince }} ago</small></p>
                 </div>
             </div>
