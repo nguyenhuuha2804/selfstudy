@@ -67,8 +67,8 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
             '/',
             ['Styles', 'Format', 'Font', 'FontSize'],
-            ['TextColor', 'BGColor'],['Maximize', 'ShowBlocks'],['About'],['Preview','Maximize',],
-            ['CodeSnippet'],
+            ['TextColor', 'BGColor'],['Maximize', 'ShowBlocks'],['About'],['Preview','Maximize'],
+            ['CodeSnippet'],['Youtube'],['toc']
         ],
         'toolbar': 'YourCustomToolbarConfig',  
         'tabSpaces': 4,
@@ -81,6 +81,8 @@ CKEDITOR_CONFIGS = {
             'embedsemantic',
             'autogrow',
             'codesnippet',
+            'youtube',
+            'toc',
             # 'devtools',
             'widget',
             'lineutils',
@@ -91,6 +93,7 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
