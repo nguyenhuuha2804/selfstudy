@@ -39,11 +39,17 @@
     <!-- Post Content -->
     {{post1.body|safe|linebreaks}}
     <hr>
-    <p class="d-inline p-2">Thẻ: </p> 
-    {% for item in post1.tag.all %}
-    <p class="d-inline p-2 border bg-light">{{item}}</p>
-    {% endfor %}
-    <iframe class="float-right" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fselfstudy.tk%2Fdocs%2Fplugins%2F&layout=button_count&size=large&width=134&height=28&appId" width="134" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+    <div class="row">
+        <div class="col-md-9 d-flex flex-row">
+            <div class="p-2 bd-highlight">Thẻ:</div>
+            {% for item in post1.tag.all %}
+            <div class="p-2 rounded border text-white bg-secondary">{{item}}</div>    
+            {% endfor %}
+        </div>
+        <div class="col-md-3 d-flex flex-row-reverse">
+            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fselfstudy.tk%2Fdocs%2Fplugins%2F&layout=button_count&size=large&width=134&height=28&appId" width="134" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+        </div>
+    </div>
     <hr>
     
     <div class="card my-4">
@@ -67,13 +73,13 @@
     <div class="card my-4">
         <div class="card-header" style="padding-bottom: 0">
             <div class="row">
-            <div class='col-md-6'>
-                <h4 class="d-inline float-left">{% fontawesome_icon 'fa-comments-o'%} Bình luận:</h4>
+                <div class='col-md-6 d-flex flex-row'>
+                    <h4>{% fontawesome_icon 'fa-comments-o'%} Bình luận:</h4>
+                </div>
+                <div class="col-md-6 d-flex flex-row-reverse">
+                    <p>Số lượt bình luận: {{comments.count}}</p>
+                </div>
             </div>
-            <div class="col-md-6">
-                <p class="d-inline float-right">Số lượt bình luận: {{comments.count}}</p>
-            </div>  
-        </div>
         </div>
         <div class="card-body" style="padding-bottom: 4px">
             {% if request.user.is_authenticated%}
