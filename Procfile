@@ -1,1 +1,1 @@
-web: gunicorn selfstudy.wsgi --log-file -
+web: gunicorn selfstudy.wsgi --workers 3
