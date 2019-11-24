@@ -1,7 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from blog.models import Post, Category
 from django.db.models import Count
 from django.db.models import Max
+from django.core.mail import send_mail
+from selfstudy.settings import EMAIL_HOST_USER
+from django.contrib import messages
+import re, sys
+
+TAG_RE = re.compile(r'<[^>]+>')
+
 # Create your views here.
 def contact(request):
     template = 'pages/contact.html'
@@ -40,3 +47,6 @@ def error404(request,exception):
     
 def error500(request):
     return render(request,'pages/error.html')
+
+def remove_tags(text):
+    return TAG_RE.sub('', text)
