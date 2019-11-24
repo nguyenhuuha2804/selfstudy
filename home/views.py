@@ -13,6 +13,19 @@ def contact(request):
     max_view = posts.aggregate(Max('views'))
     post = Post.objects.filter(status='Published').order_by("-published")[:5]
     post_new = Post.objects.filter(status='Published').order_by("-published")[:5]
+    
+    if request.method == 'POST':
+        email = request.POST['email']
+        noidung = request.POST['noidung']
+        subject = 'Hãy hỗ trợ tôi theo địa chỉ email:  ' + str(email)
+        
+        message = remove_tags(str(noidung))
+
+        send_mail(subject, 
+            message, EMAIL_HOST_USER, ['huuha84@gmail.com'], fail_silently = False)
+        messages.info(request,'Liên hệ đã gửi thành công!')
+        return redirect('contact')
+        
     context={
         'category':category,
         'category_count':category_count,

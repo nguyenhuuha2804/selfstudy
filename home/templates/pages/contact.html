@@ -50,13 +50,13 @@
                 <p class="card-text m-0">Job Position: Software Developer, Engineer</p>
                 <p class="card-text m-0">Company: I'm working as a freelancer</p>
                 <h4 class="m-2">Social</h4>
-                <a>{% fontawesome_icon 'facebook-square' large=True%} HaNguyenHuu</a> 
+                <a href="">{% fontawesome_icon 'facebook-square' large=True%} HaNguyenHuu</a> 
                 <br>
-                <a>{% fontawesome_icon 'youtube-square' large=True%} HuuHaNguyen</a>
+                <a href="">{% fontawesome_icon 'youtube-square' large=True%} HuuHaNguyen</a>
                 <br>
-                <a>{% fontawesome_icon 'twitter-square' large=True%} HuuHaNguyen</a>
+                <a href="">{% fontawesome_icon 'twitter-square' large=True%} HuuHaNguyen</a>
                 <br>
-                <a>{% fontawesome_icon 'github' large=True%} Github</a>
+                <a href="">{% fontawesome_icon 'github' large=True%} Github</a>
             </div>
         </div>
         <br>
@@ -64,13 +64,67 @@
         <p>Website này là nơi để tôi truyền cảm hứng lập trình đến các bạn muốn học và tự học làm trang web cho bản thân mình. Bản thân tôi cũng là 1 người ngoại đạo, và luôn tham vọng tự mình viết lên 1 trang web cho bản thân. Hi vọng các bạn cùng tham gia đóng góp, và thảo luận cùng tôi.</p>
         </div>
         <div class="card-footer text-right">
-            <a href="#" class="btn btn-primary">Liên hệ --></a>
+            <button class="btn btn-primary" id="show">Liên hệ --></button>
         </div>
     </div>
+    <div id="myModalcontact" class="card text-left">
+        
+        <form method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+            {% csrf_token %}
+            <h2 class="card-header mb-3 text-center">Liên hệ với tôi:</h2>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Địa chỉ email: (*)</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="noidung">Nội dung: (*)</label>
+                    ​<textarea id="editor1" name="noidung" class="form-control" name="noidung"  placeholder="Noi dung" required autofocus></textarea>
+                </div>
+            </div>
+            <div class="card-footer">
+                <input type="submit" class="btn btn-primary text-center" class="form-control" value="Gửi">
+            </div>
+            <script>
+                // Replace the <textarea id="editor1"> with an CKEditor
+                // instance, using default configurations.
+                CKEDITOR.replace( 'editor1', {
+                    uiColor: '#8C9B94',
+                    toolbar: [
+                        [ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+                        [ 'FontSize', 'TextColor', 'BGColor' ,'Image','CodeSnippet'],['Format', 'Font']
+                    ],
+                    'extraPlugins':'codesnippet',
+                });
+            </script>
+        </form>
+    </div>
+    {% for mes in messages %}
+        <div class="alert alert-success" role="alert" id="success-alert">
+            <p>{{mes}}</p>
+        </div>
+    {% endfor %}
+    <br>
 </div>
+
 
 {% endblock content %}
 
 {% block slidebar %}
 {% include 'include/slidebar.html'%}
 {% endblock slidebar %}
+
+{% block script %}
+    <script>
+    $(document).ready(function(){
+        $("#myModalcontact").hide();
+        $("#show").click(function(){
+            $("#myModalcontact").show();
+        });
+    });
+    $(".alert").delay(4000).slideUp(200, function() {
+        $(this).alert('close');
+    });
+    </script>
+{% endblock script %}
