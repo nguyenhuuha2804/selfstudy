@@ -10,12 +10,11 @@ body {
   margin-top: 6px;
 }
 .search-butn {
-  margin-left: -16px;
+  margin-left: -44px;
 }
 .signin-btn {
   padding-bottom: 9px;
   padding-top: 9px;
-  margin-left: 10px;
 }
 .header-navbar {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

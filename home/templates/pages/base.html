@@ -32,20 +32,24 @@
     <!-- Navigation -->
     <div class="container-fluid fixed-top header-navbar">
         <div class="row bg-white">
-            <div class="container">
-                <a class="navbar-brand d-inline" href="#"><img src="{% static 'images/logo_web.svg' %}"></a>
-                <!-- Trigger the modal with a Sigin button -->
-                <div class="float-right search-signin-btn">
+            <nav class="navbar navbar-expand container" style="padding: 0;">
+                <div class="col-md-6">
+                    <a class="navbar-brand" href="#"><img src="{% static 'images/logo_web.svg' %}"></a>
+                </div>      
+                <div class="col-md-6">
+                    <div class="collapse navbar-collapse float-right">
                     {% include 'include/search.html' %}
 
                     {% if request.user.is_authenticated%}
-                    <a class="btn btn-outline-success signin-btn d-inline" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:10px">{% fontawesome_icon 'user-circle-o' large=True color='green'%}</a>
+                    <a class="btn btn-outline-success signin-btn" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 1px;margin-left: 0;margin-bottom: 1px;padding-top: 6px;padding-bottom: 6px;">{% fontawesome_icon 'user-circle-o' large=True color='green'%}</a>
                     <!-- Modal -->
                     {% else %}
-                    <a class="btn btn-outline-danger signin-btn d-inline" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:10px">{% fontawesome_icon 'user-circle-o' large=True color='red'%}</a>
+                    <a class="btn btn-outline-danger signin-btn" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 1px;margin-left: 0;margin-bottom: 1px;padding-top: 6px;padding-bottom: 6px;">{% fontawesome_icon 'user-circle-o' large=True color='green'%}</a>
+                    <!-- Modal -->
                     {% endif %}
                 </div>
-            </div>
+                </div>
+            </nav>
         </div>
         
         <nav class="navbar navbar-dark bg-primary navbar-expand-lg row">
