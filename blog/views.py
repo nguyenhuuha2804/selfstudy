@@ -16,7 +16,7 @@ from django.db.models import Max
 def post_list(request):
     template='pages/home.html'
     object_list=Post.objects.filter(status='Published').exclude(category__slug = 'giai-tri').order_by("-published")
-    pages=pagination(request,object_list,2)
+    pages=pagination(request,object_list,5)
     
     # import sliderbar of data
     category=Category.objects.annotate(posts_count = Count('post'))
