@@ -1,0 +1,86 @@
+.main {
+    
+    box-sizing: border-box;
+    
+    transition: all 0.195s ease;
+    transform-style: preserve-3d;
+  }
+
+  .main.is-rotated-left {
+    transform: translate(-50%, -50%) rotateY(-4deg);
+  }
+  .main.is-rotated-right {
+    transform: translate(-50%, -50%) rotateY(4deg);
+  }
+  .main .header {
+    padding: 5px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .main .header span {
+    display: inline-block;
+    margin: 0 3px;
+    font-weight: 700;
+  }
+  .weedays {
+    background-color: #55bae9;
+
+  }
+  .main .sideb table {
+    text-align: center;
+   
+    width: 96%;
+    margin: 10px auto 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  .main .sideb table tbody:before {
+    content: "-";
+    display: block;
+    line-height: 0.75em;
+    color: transparent;
+  }
+  .main .sideb table th {
+    color: #f05855;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .main .sideb table td {
+    padding: 11px 5px;
+    color: #ced0ce;
+    font-size: 0.75em;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .main .sideb table td::before {
+    content: "";
+    display: none;
+    width: 50%;
+    height: 2px;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -8px);
+    background-color: #f05855;
+  }
+  .main .sideb table td.currentDay::before {
+    display: block;
+  }
+  .main .sideb table td.selectable {
+    color: #303633;
+    cursor: pointer;
+  }
+  .main .sideb table td.selectable:hover {
+    background: #f05855;
+    color: white;
+  }
+  .main .sideb table td.between {
+    background-color: #333;
+    color: white;
+  }
+  .main .sideb table td.active, .main .sideb table td.hover {
+    background: #f05855;
+    color: white;
+  }

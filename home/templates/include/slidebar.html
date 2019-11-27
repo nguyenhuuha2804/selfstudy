@@ -3,31 +3,27 @@
 
 <div class="col-md-4">
     <!-- Gioi thieu -->
-    <div class="card my-4 bg-light">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="{% static 'images/logo_web.svg'%}" class="img-responsive" style="max-width:100%;">
-                </div>
-                <div class="col-md-8">
-                    <ul class="list-unstyled mb-0">
-                        <li class="font-weight-bold">Thống kê lượng truy cập:</li>
-                        <li class="text-center m-2"><span class="bg-secondary font-weight-bold p-2 text-white">00000{{max_view.views__max}}</span></li>
-                    </ul>
-                </div>
+    <div class="card my-4  shadow-sm" style="background-image: url({% static 'images/background_logo.jpg'%});height:170px;background-position: center;background-repeat: no-repeat;background-size: cover;">
+        <div class="card-body bg-img-body d-flex justify-content-start">
+            <img src="{% static 'images/logo_web.svg'%}" class="img-responsive" style="max-width:100%;">   
+            <div>
+                <p class="icon-traffic num1"><i class="fa fa-line-chart" style="font-size:18px;color:#0753bc"></i><span class="font-weight-bold bg-secondary text-white" style="margin-left: 10px;"> 0000{{max_view.views__max}} </span></p> 
+                <p class="icon-traffic"><i class="fa fa-thumbs-up" style="font-size:18px;color:#0753bc"></i><span class="font-weight-bold bg-secondary text-white" style="margin-left: 10px;"> 0000{{max_view.views__max}} </span></p>
             </div>
         </div>
-    </div>
-    <!-- Search Widget -->
-    <div class="card my-4">
-        <h5 class="card-header">Tìm kiếm</h5>
-        <div class="card-body">
-            {% include 'include/search.html' %}
+        <div class="d-flex bd-highlight mb-3 btn-end">
+            <div class="bd-highlight m-2"><iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fselfstudy.tk%2Fdocs%2Fplugins%2F&layout=button_count&size=large&width=134&height=28&appId" width="134" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe></div>
+            <div class="ml-auto m-2 bd-highlight"><a style="font-size:12px"class="btn btn-secondary" href="https://www.w3schools.com/icons/fontawesome_icons_webapp.asp"><i class="fa fa-heart"></i> Liên kết hay</a></div>
         </div>
     </div>
 
+    <!-- Search Widget -->
+    <div class="card my-4 shadow-sm">
+        {% include 'include/calendar.html'%}
+    </div>
+
     <!-- Categories Widget -->
-    <div class="card my-4">
+    <div class="card my-4 shadow-sm">
         <h5 class="card-header">Chuyên mục</h5>
         <div class="card-body">
             <div class="row">
@@ -57,7 +53,7 @@
     </div>
 
     <!-- Side Widget -->
-    <div class="card my-4">
+    <div class="card my-4 shadow-sm">
         <h5 class="card-header">Bài viết mới</h5>
         <div class="card-body p-0">
             <ul class="list-unstyled mb-0 p-0">
@@ -70,12 +66,12 @@
         </div>
     </div>
     <!--Slide Advertisment-->
-    <div class="card my-4">
+    <div class="card my-4 shadow-sm">
         <img src="{% static 'images/quangcao-01.gif'%}" style="max-width: 100%;">
     </div>
     <!-- Side Widget -->
 
-    <div class="card my-4">
+    <div class="card my-4 shadow-sm">
         <h5 class="card-header">Liên kết</h5>
         <div class="card-body">
             <ul class="list-unstyled mb-0" style="margin-left: 40px ">

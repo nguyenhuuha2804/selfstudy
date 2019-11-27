@@ -15,7 +15,7 @@ from django.db.models import Max
 
 def post_list(request):
     template='pages/home.html'
-    object_list=Post.objects.filter(status='Published').exclude(category__slug = 'thu-vien').order_by("-published")
+    object_list=Post.objects.filter(status='Published').exclude(category__slug = 'giai-tri').order_by("-published")
     pages=pagination(request,object_list,2)
     
     # import sliderbar of data

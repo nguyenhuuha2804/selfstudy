@@ -1,10 +1,6 @@
 {% load fontawesome %}
 
-<form method="GET" action="{% url 'blog:search' %}">
-    <div class="input-group">
-        <input type="text" class="form-control" name="q" value="{{request.GET.q}}" placeholder="Nội dung tìm kiếm...">
-        <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" type="button">{% fontawesome_icon 'search'%}</button>
-        </span> 
-    </div>
+<form class="form-inline my-2 my-lg-0 d-inline" method="GET" action="{% url 'blog:search' %}">
+    <input class="form-control mr-sm-2" type="text" name="q" value="{{request.GET.q}}" placeholder="Nội dung tìm kiếm...">
+    <button class="btn bg-success search-butn my-2 my-sm-0" type="submit">{% fontawesome_icon 'search' color="white"%}</button>
 </form>

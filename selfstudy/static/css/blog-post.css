@@ -4,7 +4,113 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-post/blob/master/LICENSE)
  */
 body {
-  padding-top: 56px;
+  background-color: #f1f1f1;
+}
+.search-signin-btn {
+  margin-top: 6px;
+}
+.search-butn {
+  margin-left: -16px;
+}
+.signin-btn {
+  padding-bottom: 9px;
+  padding-top: 9px;
+  margin-left: 10px;
+}
+.header-navbar {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.header-img {
+  margin-top: 110px;
+}
+.breadcrumb {
+  background-color:transparent;
+  margin-bottom: 0;
 }
 
+.card-header {
+  background-color: #81ad2e;
+}
+#scrollToTop, #scrollToBottom {
+  cursor: pointer;
+  background-color: #2ea308; /* Đổi màu nền ở đây */
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  color: #fff; /* Đổi màu mũi tên ở đây */
+  font-size: 16pt;
+  text-align: center;
+  text-decoration: none;
+  line-height: 40px;
+  position: fixed;
+  right: 0; /* Đổi khoảng cách so với lề phải ở đây, nếu muốn hiện ở lề trái thì đổi thành left */
+  bottom: 25px; /* Khoảng cách từ nút cho tới chân trang */
+  display:none;
+}
+#scrollToTop {
+  bottom: 75px;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0yLjUgMEwxIDEuNSAzLjUgNCAxIDYuNSAyLjUgOGw0LTQtNC00eiIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+) !important;
+}
+.carousel {
+  margin-bottom: 0;
+  padding: 0 40px 30px 40px;
+}
+/* The controlsy */
+.carousel-control {
+  left: -12px;
+  height: 40px;
+  width: 40px;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  margin-top: 90px;
+}
+.carousel-control.right {
+  right: -12px;
+}
+/* The indicators */
+.carousel-indicators {
+  right: 50%;
+  top: auto;
+  bottom: -10px;
+  margin-right: -19px;
+}
+/* The colour of the indicators */
+.carousel-indicators li {
+  background: #cecece;
+}
+.carousel-indicators .active {
+background: #428bca;
+}
+.bg-img-body {
+  padding: 2px 0 0 5px !important;
+}
+.bg-img-body .list-unstyled {
+  margin-top: 20px;
+}
+.bg-img-body .font-weight-bold{
+  font-size: 16px;
+}
+.icon-traffic {
+  margin: 5px 5px 5px 20px;
 
+}
+.btn-end{
+  margin-top: 50px!important;
+}
+.num1 {
+  margin-top: 10px;
+}
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
+.flex-row-tag {
+  padding-bottom:10px;
+}

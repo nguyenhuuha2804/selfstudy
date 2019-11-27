@@ -3,13 +3,16 @@
 <head>
     {% load static %}
     {% load fontawesome %}
-
+    <!--Meta tag-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {% block seo %}{% endblock %}
+    <meta name="author" content="Nguyen Huu Ha">
+    <meta name="generator" content="Nguyen Huu Ha">
 
+    <!--Title and description tag-->
     <title>{% block title %}{% endblock title %}</title>
+
     {% fontawesome_stylesheet %}
     
     <!-- Bootstrap core CSS -->
@@ -17,79 +20,35 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+    <link href="{% static 'css/calendar.css' %}" rel="stylesheet">
     <link href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css' %}" rel="stylesheet">
+    {% block linkcss %}{% endblock %}
     <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
-    <style>
-        #scrollToTop, #scrollToBottom {
-            cursor: pointer;
-            background-color: #014590; /* Đổi màu nền ở đây */
-            display: inline-block;
-            height: 40px;
-            width: 40px;
-            color: #fff; /* Đổi màu mũi tên ở đây */
-            font-size: 16pt;
-            text-align: center;
-            text-decoration: none;
-            line-height: 40px;
-            position: fixed;
-            right: 0; /* Đổi khoảng cách so với lề phải ở đây, nếu muốn hiện ở lề trái thì đổi thành left */
-            bottom: 25px; /* Khoảng cách từ nút cho tới chân trang */
-            display:none;
-        }
-        #scrollToTop {
-            bottom: 75px;
-        }
-        .breadcrumb-item + .breadcrumb-item::before {
-            content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0yLjUgMEwxIDEuNSAzLjUgNCAxIDYuNSAyLjUgOGw0LTQtNC00eiIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+) !important;
-        }
-        .carousel {
-            margin-bottom: 0;
-            padding: 0 40px 30px 40px;
-        }
-        /* The controlsy */
-        .carousel-control {
-            left: -12px;
-            height: 40px;
-            width: 40px;
-            background: none repeat scroll 0 0 #222222;
-            border: 4px solid #FFFFFF;
-            border-radius: 23px 23px 23px 23px;
-            margin-top: 90px;
-        }
-        .carousel-control.right {
-            right: -12px;
-        }
-        /* The indicators */
-        .carousel-indicators {
-            right: 50%;
-            top: auto;
-            bottom: -10px;
-            margin-right: -19px;
-        }
-        /* The colour of the indicators */
-        .carousel-indicators li {
-            background: #cecece;
-        }
-        .carousel-indicators .active {
-        background: #428bca;
-        }
-    </style>
+
+
 </head>
 <body>
 
     <!-- Navigation -->
-    <div class="container-fluid fixed-top">
-        <div class="container bg-white">
-            <a class="navbar-brand" href="#"><img src="{% static 'images/logo_web.svg' %}" alt=""></a>
-            <!-- Trigger the modal with a Sigin button -->
-            {% if request.user.is_authenticated%}
-            <a class="nav-item btn btn-outline-success float-right" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:30px">{% fontawesome_icon 'user-circle-o' large=True color='green'%}</a>
-            <!-- Modal -->
-            {% else %}
-            <a class="nav-item btn btn-outline-danger float-right" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:30px">{% fontawesome_icon 'user-circle-o' large=True color='red' %}</a>
-            {% endif %}
+    <div class="container-fluid fixed-top header-navbar">
+        <div class="row bg-white">
+            <div class="container">
+                <a class="navbar-brand d-inline" href="#"><img src="{% static 'images/logo_web.svg' %}"></a>
+                <!-- Trigger the modal with a Sigin button -->
+                <div class="float-right search-signin-btn">
+                    {% include 'include/search.html' %}
+
+                    {% if request.user.is_authenticated%}
+                    <a class="btn btn-outline-success signin-btn d-inline" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:10px">{% fontawesome_icon 'user-circle-o' large=True color='green'%}</a>
+                    <!-- Modal -->
+                    {% else %}
+                    <a class="btn btn-outline-danger signin-btn d-inline" data-toggle="modal" data-target="#myModalsigup" style="margin-top: 8px;margin-left:10px">{% fontawesome_icon 'user-circle-o' large=True color='red'%}</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right, rgb(54, 152, 233) 0%,rgb(129, 85, 170) 100%);padding: 0 16px 0 16px;">
+        
+        <nav class="navbar navbar-dark bg-primary navbar-expand-lg row">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -113,14 +72,13 @@
             </div>
         </nav>
     </div>
+    <!-- Modal Account Sign in -->
     <div id="myModalsigup" class="modal fade" role="dialog">
         <div class="modal-dialog">
-        <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <div class="modal-title">
-                        <h2 data-feather="user" width="50" height="50" color="red" class="d-inline p-2 h4"></h2>
-                        <h4 class="d-inline p-2">TÀI KHOẢN</h4>
+                        <h4 class="d-inline p-2"><i class="fa fa-users" style="margin-right: 140px;font-size:32px"></i>TÀI KHOẢN</h4>
                     </div>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -130,37 +88,45 @@
             </div>
         </div>
     </div>
+    <!--End of Modal Account Sign in -->
 
-    <div class="container">
+    <!--End of Navigation -->
+
+
+    <div class="container header-img">
+
         {% block headerimage %}{% endblock %}
-        <nav aria-label="breadcrumb row">
-            <ol class="breadcrumb" style="margin-top: 5px;">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item active breadcrumb-item-home" aria-current="page">
-                    <a style="color:black" href="{% url 'home' %}">{% fontawesome_icon 'home' large=True%}</a>
+                    <a style="color:black" href="{% url 'home' %}"><i class="fa fa-home" style="font-size: 24px;"></i></a>
                 </li>
                 {% block breadcrumb %}{% endblock breadcrumb %}
             </ol>
         </nav>
+        <!-- End of Breadcrumb -->
+        <div class="row m-0 p-2">
+            <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="4" direction="right">{% block newpost %}{% endblock newpost%}</marquee>
+        </div>
     </div>
-    <!-- Breadcrumb -->
-    <div class="container">
-    <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="4" direction="right" style="background:#E6BD94">{% block newpost %}{% endblock newpost%}</marquee>
-    </div>
+    
     <!-- Page Content -->
     <div class="container">
         <div class="row">
+
             <!-- Post Content Column -->
             {% block content %}{% endblock content%}
+
             <!-- Sidebar Widgets Column -->
             {% block slidebar %}{% endblock slidebar%}
         </div>
-        <!-- /.row -->
 
     </div>
-    <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark rounded">
+    <footer class="container-fluid py-4 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">©2019 selfstudy.tk All Rights Reserved.</p>
         </div>
@@ -175,22 +141,17 @@
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/feather.min.js' %}"></script>
     <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+    <script  src="{% static 'js/function.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $(".content-markdown").each(function(){
-            var content=$(this).text()
-            console.log(content)
-            var markedContent=marked(content)
-            console.log(markedContent)
-            $(this).html(markedContent)
-            })
-            $(".content-markdown img").each(function(){
-            $(this).addClass("img-responsive");
-            })
             $(".comment-reply-btn").click(function(event){
             event.preventDefault();
             $(this).parent().next(".comment-reply").fadeToggle();
             })
+            $(".datepicker").datepicker({
+            prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+            nextText: '<i class="fa fa-fw fa-angle-right"></i>'
+            });
         });
     </script>
     <script type = "text/javascript">

@@ -2,13 +2,18 @@
 {% load crispy_forms_tags %}
 {% load fontawesome %}
 
-{% block title %}{{post1.title}}{% endblock title %}
+{% block title %}
+{{post1.title}}
+{% endblock title %}
 
+{% block seo %}
+<meta name="title" content="{{post1.seo_title}}">
+<meta name="description" content="{{post1.seo_description}}"> 
+{% endblock %}
 
 {% block signup %}
     {% include 'include/sigin.html'%}
 {% endblock signup %}
-
 
 {% block breadcrumb %}
 <li class="breadcrumb-item breadcrumb-item-home" aria-current="page"><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</a></li>
@@ -17,71 +22,74 @@
 
 {% block newpost %}
 {% for obj in post_new %}
-<a style="text-decoration:none;color:black" href="{% url 'blog:post_detail' slug=obj.slug %}">{% fontawesome_icon 'angle-double-right' color="red"%}  {{obj.title}}</a>
+<a style="text-decoration:none;color:black" href="{% url 'blog:post_detail' slug=obj.slug %}"><i class="fa fa-caret-square-o-right" style="color:red"></i>  {{obj.title}}</a>
 {% endfor %}
 {% endblock newpost%}
 
 
 {% block content %}
-<div class="col-lg-8">
-    <!-- Title -->
-    <h1 class="card-header border-top border-left border-right my-4 h4">{{post1.title}}</h1>
-    <!-- Author -->
-    <p class="d-inline p-2">{% fontawesome_icon 'user' %}  {{post1.author}}</p>
-    <p class="d-inline p-2">{% fontawesome_icon 'eye' %} {{post1.views}}</p>
-    <p class="d-inline p-2">{% fontawesome_icon 'clock-o' %} {{post1.published|date:"M d, Y"}}</p>
-    <p class="d-inline p-2">{% fontawesome_icon 'folder' %}<a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</a></p>
-
-    <hr>
-    <!-- Preview Image -->
-    <img class="img-responsive rounded" src="{{post1.image.url}}" style="max-width: 100%;">
-    <hr>
-    <!-- Post Content -->
-    {{post1.body|safe|linebreaks}}
-    <hr>
-    <div class="row">
-        <div class="col-md-9 d-flex flex-row">
+<div class="col-md-8">
+    {% if post1.category.slug != 'giai-tri'%}
+    <div class="card my-4 shadow-sm">
+        <!-- Title -->
+        <h5 class="card-header h4">{{post1.title}}</h5>
+        <!-- Author -->
+        <div class="col-md-6">
+            <nav class="nav d-flex justify-content-between">
+                <p class="p-2"><i class="fa fa-user"></i> {{post1.author}}</p>
+                <p class="p-2"><i class="fa fa-eye"></i> {{post1.views}}</p>
+                <p class="p-2"># <a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</p>
+            </nav>
+        </div>
+        <!-- Preview Image -->
+        <img class="img-responsive rounded" src="{{post1.image.url}}" style="max-width: 100%;">
+        <!-- Post Content -->
+        <div class="card-body">
+        {{post1.body|safe|linebreaks}}
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-row-tag">
             <div class="p-2 bd-highlight">Thẻ:</div>
             {% for item in post1.tag.all %}
             <div class="p-2 rounded border text-white bg-secondary">{{item}}</div>    
             {% endfor %}
         </div>
-        <div class="col-md-3 d-flex flex-row-reverse">
-            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fselfstudy.tk%2Fdocs%2Fplugins%2F&layout=button_count&size=large&width=134&height=28&appId" width="134" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+        <hr>
+        <!-- nut like va share facebook-->
+        <div class="p-2">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=776523159466778&autoLogAppEvents=1"></script>
+            <div class="fb-like" data-href="https://www.selfstudy.tk/blog/" data-width="" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
         </div>
     </div>
-    <hr>
-    
-    <div class="card my-4">
+        
+    <div class="card shadow-sm">
         <h4 class="card-header">Bài viết liên quan</h4>
         <div class="card-deck">
             {% for obj in post2%}
             <div class="card">
                 <img src="{{obj.image.url}}" class="card-img-top" style="max-width: 100%;">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'blog:post_detail' slug=obj.slug%}">{{obj.title}}</a></h5>
-                    <p class="card-text"><small class="text-muted">Last updated: {{obj.published|timesince }} ago</small></p>
+                    <h4 class="card-title h6"><a href="{% url 'blog:post_detail' slug=obj.slug%}">{{obj.title}}</a></h4>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 
-
-
     <!-- Comments Form -->
-    <div class="card my-4">
-        <div class="card-header" style="padding-bottom: 0">
+    <div class="card my-4 shadow-sm">
+        <div class="card-header" style="padding-bottom:0">
             <div class="row">
                 <div class='col-md-6 d-flex flex-row'>
-                    <h4>{% fontawesome_icon 'fa-comments-o'%} Bình luận:</h4>
+                    <h4><i class="fa fa-comments"></i> Bình luận:</h4>
                 </div>
                 <div class="col-md-6 d-flex flex-row-reverse">
                     <p>Số lượt bình luận: {{comments.count}}</p>
                 </div>
             </div>
         </div>
-        <div class="card-body" style="padding-bottom: 4px">
+        <div class="card-body" style="padding-bottom:4px">
             {% if request.user.is_authenticated%}
             <form action="." method="POST">
                 {% csrf_token %}
@@ -90,7 +98,7 @@
             </form>
             {% else %}
             <div class="alert alert-danger">
-                <p style="margin-bottom: 4px">{% fontawesome_icon 'exclamation-triangle'%} Bạn hãy đăng nhập để tham gia bình luận!</p>
+                <p style="margin-bottom: 4px"><i class="fa fa-exclamation-triangle" style="color: red;"></i> Bạn hãy đăng nhập để tham gia bình luận! <a href="{% url 'login' %}">Đăng nhập</a></p>
             </div>
             {% endif %}
         </div>
@@ -98,13 +106,13 @@
 
     <!-- Comment with nested comments -->
     {% for comment in comments %}
-    <div class="media mb-4">
+    <div class="media mb-4 shadow-sm">
         <img class="d-flex mr-3 rounded-circle" src="{{comment.member.profile.image.url}}" width="50px" height="50px">
         <div class="media-body">
             <h5 class="mt-0">{{comment.member}}</h5>
             {{comment.body}}
             <footer class="blockquote-footer"> in {{comment.date|timesince}} ago |{% if comment.children.count > 0 %}{{ comment.children.count }}Comment{% if comment.children.count > 1 %}s{% endif %}|{% endif %}<a class="comment-reply-btn" href="">Reply</a></footer>
-            
+                
             <div class="comment-reply" style="display: none;">
                 {% for child_comment in comment.children %}
                 <div class="media mt-4">
@@ -123,18 +131,105 @@
                     <input type="hidden" name="parent_id" value="{{ comment.id }}">
                     <input type="submit" value="Bình luận" class="btn btn-success btn-sm">
                 </form>
-                {% else %}
-                <div class="alert alert-danger">
-                    <p style="margin-bottom: 4px">{% fontawesome_icon 'exclamation-triangle'%} Bạn hãy đăng nhập để tham gia bình luận!</p>
-                </div>
                 {% endif %}
             </div>
-
         </div>
     </div>
     {% endfor %}
-</div>
 
+    {% else %}
+    <!-- Post == giai-tri -->
+    <div  class="card my-4 shadow-sm">
+        <!-- Title -->
+        <h5 class="card-header h4">{{post1.title}}</h5>
+        <!-- Author -->
+        <div class="col-md-6">
+            <nav class="nav d-flex justify-content-between">
+                <p class="p-2"><i class="fa fa-user"></i> {{post1.author}}</p>
+                <p class="p-2"><i class="fa fa-eye"></i> {{post1.views}}</p>
+                <p class="p-2"># <a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</a></p>
+            </nav>
+        </div>
+        <!-- Post Content -->
+        <div class="card-body">
+        {{post1.body|safe}}
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-row-tag">
+            <div class="p-2 bd-highlight">Thẻ:</div>
+            {% for item in post1.tag.all %}
+            <div class="p-2 rounded border text-white bg-secondary">{{item}}</div>    
+            {% endfor %}
+        </div>
+        <hr>
+        <!-- nut like va share facebook-->
+        <div class="p-2">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=776523159466778&autoLogAppEvents=1"></script>
+            <div class="fb-like" data-href="https://www.selfstudy.tk/blog/" data-width="" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+        </div>
+    </div>
+    <!-- Comments Form -->
+    <div class="card my-4 shadow-sm">
+        <div class="card-header" style="padding-bottom: 0">
+            <div class="row">
+                <div class='col-md-6 d-flex flex-row'>
+                    <h4><i class="fa fa-comments"></i> Bình luận:</h4>
+                </div>
+                <div class="col-md-6 d-flex flex-row-reverse">
+                    <p>Số lượt bình luận: {{comments.count}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="padding-bottom: 4px">
+            {% if request.user.is_authenticated%}
+            <form action="." method="POST">
+                {% csrf_token %}
+                {{comment_form|crispy}}
+                <input type="submit" value="Bình luận" class="btn btn-success btn-sm">
+            </form>
+            {% else %}
+            <div class="alert alert-danger">
+                <p style="margin-bottom: 4px"><i class="fa fa-exclamation-triangle" style="color: red;"></i> Bạn hãy đăng nhập để tham gia bình luận! <a href="{% url 'login' %}">Đăng nhập</a></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Comment with nested comments -->
+    {% for comment in comments %}
+    <div class="media mb-4 shadow-sm">
+        <img class="d-flex mr-3 rounded-circle" src="{{comment.member.profile.image.url}}" width="50px" height="50px">
+        <div class="media-body">
+            <h5 class="mt-0">{{comment.member}}</h5>
+            {{comment.body}}
+            <footer class="blockquote-footer"> in {{comment.date|timesince}} ago |{% if comment.children.count > 0 %}{{ comment.children.count }}Comment{% if comment.children.count > 1 %}s{% endif %}|{% endif %}<a class="comment-reply-btn" href="">Reply</a></footer>
+         
+            <div class="comment-reply" style="display: none;">
+                {% for child_comment in comment.children %}
+                <div class="media mt-4">
+                    <img class="d-flex mr-3 rounded-circle" src="{{comment.member.profile.image.url}}" width="50px" height="50px">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{child_comment.member}}</h5>
+                        {{child_comment.body}}
+                        <footer class="blockquote-footer">via {{child_comment.member}}| in {{child_comment.date|timesince}} ago</footer>
+                    </div>
+                </div>    
+                {% endfor %}
+                {% if request.user.is_authenticated%}
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{comment_form|crispy}}
+                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                    <input type="submit" value="Bình luận" class="btn btn-success btn-sm">
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
 {% endblock content %}
 
 {% block slidebar %}

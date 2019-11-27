@@ -13,8 +13,8 @@
                 <div class="card-body">
                     <p class="card-text">Xin chào {{user.username}}</p>
                     <a class="btn-sm btn-primary text-decoration-none" href="{% url 'logout' %}">{% fontawesome_icon 'sign-out' large=True %} Thoát</a>
-                    {% if request.user.is_staff%}
-                    <a class="btn-sm btn-primary text-decoration-none" href="{% url 'blog:dashboard' %}">Quản trị bài viết</a>
+                    {% if request.user.is_superuser %}
+                    <a class="btn-sm btn-primary text-decoration-none" href="{% url 'blog:dashboard' %}"><i class="fa fa-tachometer"></i> Quản trị bài viết</a>
                     {% endif %}
                 </div>
             </div>
