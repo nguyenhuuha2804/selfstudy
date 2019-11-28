@@ -1,7 +1,5 @@
 .main {
-    
     box-sizing: border-box;
-    
     transition: all 0.195s ease;
     transform-style: preserve-3d;
   }
@@ -13,7 +11,8 @@
     transform: translate(-50%, -50%) rotateY(4deg);
   }
   .main .header {
-    padding: 5px 0 5px 0;
+    background-color: #81ad30;
+    padding: 10px 0 10px 0;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -23,10 +22,7 @@
     margin: 0 3px;
     font-weight: 700;
   }
-  .weedays {
-    background-color: #55bae9;
 
-  }
   .main .sideb table {
     text-align: center;
    
@@ -50,6 +46,7 @@
   .main .sideb table td {
     padding: 11px 5px;
     color: #ced0ce;
+    font-weight: bold;
     font-size: 0.75em;
     transition: all 0.3s;
     position: relative;
