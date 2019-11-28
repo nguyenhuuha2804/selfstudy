@@ -21,6 +21,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from account.views import (login_view,register_view,logout_view)
 from blog.views import post_list
+from django.views.generic import TemplateView
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
@@ -31,6 +34,7 @@ urlpatterns = [
     path('logout/',logout_view,name='logout'),
     path('register/',register_view,name='register'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('robots.txt', TemplateView.as_view(template_name="pages/robots.txt", content_type='text/plain')),
 ]
 
 if settings.DEBUG == True:
