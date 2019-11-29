@@ -20,7 +20,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .header-img {
-  margin-top: 110px;
+  margin-top: 120px;
 }
 .breadcrumb {
   background-color:transparent;
@@ -112,4 +112,42 @@ background: #428bca;
 }
 .flex-row-tag {
   padding-bottom:10px;
+}
+
+.pricetag{
+	white-space:nowrap;
+	position:relative;
+	margin:0 5px 0 15px;
+	displaY:inline-block;
+	height:25px;
+	border-radius: 0 5px 5px 0;
+	padding: 0 25px 0 15px;
+	background:#E8EDF0;
+	border: 0 solid #C7D2D4;
+	border-top-width:1px;
+	border-bottom-width:1px;
+	color:black;
+	line-height:23px;
+}
+.pricetag:after{
+	position:absolute;
+	right:0;
+	margin:1px 7px;
+	font-weight:bold;
+	font-size:19px;
+}
+.pricetag:before{
+	position:absolute;
+	content:"\25CF";
+	color:white;
+	text-shadow: 0 0 1px #333;
+	font-size:11px;
+	line-height:0px;
+	text-indent:12px;
+	left:-15px;
+	width: 1px;
+	height:0px;
+	border-right:15px solid #E8EDF0;
+	border-top:  11px solid transparent;
+	border-bottom:  14px solid transparent;
 }

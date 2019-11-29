@@ -49,9 +49,9 @@
         </div>
         <hr>
         <div class="d-flex flex-row flex-row-tag">
-            <div class="p-2 bd-highlight">Thẻ:</div>
+            <div class="bd-highlight" style="margin-left: 15px;margin-right:20px">Thẻ: </div>
             {% for item in post1.tag.all %}
-            <div class="p-2 rounded border text-white bg-secondary">{{item}}</div>    
+            <span class="pricetag">{{item}}</span> 
             {% endfor %}
         </div>
         <hr>
