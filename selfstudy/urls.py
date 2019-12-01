@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from home import views
 from django.conf.urls import handler404, handler500
@@ -23,7 +24,11 @@ from account.views import (login_view,register_view,logout_view)
 from blog.views import post_list
 from django.views.generic import TemplateView
 from django.conf.urls import url
+from home.sitemaps import PostSitemap
 
+sitemaps = {
+    'posts': PostSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
@@ -35,6 +40,7 @@ urlpatterns = [
     path('register/',register_view,name='register'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('robots.txt', TemplateView.as_view(template_name="pages/robots.txt", content_type='text/plain')),
+    path('sitemap.xml',sitemap,{'sitemaps':sitemaps}),
 ]
 
 if settings.DEBUG == True:

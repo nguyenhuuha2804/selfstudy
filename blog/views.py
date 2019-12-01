@@ -82,7 +82,7 @@ def post_detail(request,slug):
                         body = content_data,
                         parent = parent_obj,
                 )
-        return HttpResponseRedirect(new_comment.content_object.get_absoulte_url())
+        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
 
     comments = post1.comments
     post = Post.objects.filter(status='Published').order_by("-published")[0:5]

@@ -14,6 +14,7 @@ class Tag(models.Model):
     name=models.CharField(max_length=50)
     def __str__(self):
         return self.name
+
 # models Category
 class Category(models.Model):
     name = models.CharField(max_length=250)
@@ -27,7 +28,7 @@ class Category(models.Model):
         self.slug=slugify(self.name)
         super(Category,self).save(*args,**kwargs)
 
-    def get_absoulte_url(self):
+    def get_absolute_url(self):
         return reverse('blog:category_detail',args=[self.slug])
     def __str__(self):
         return self.name
@@ -60,7 +61,8 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
-    def get_absoulte_url(self):
+        
+    def get_absolute_url(self):
         return reverse('blog:post_detail',args=[self.slug])
     @property
     def comments(self):
