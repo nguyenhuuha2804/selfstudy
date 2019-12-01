@@ -24,10 +24,11 @@ from account.views import (login_view,register_view,logout_view)
 from blog.views import post_list
 from django.views.generic import TemplateView
 from django.conf.urls import url
-from home.sitemaps import PostSitemap
+from home.sitemaps import PostSitemap, StaticViewSitemap
 
 sitemaps = {
     'posts': PostSitemap,
+    'static': StaticViewSitemap,
 }
 
 urlpatterns = [
