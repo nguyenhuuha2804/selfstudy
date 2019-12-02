@@ -7,6 +7,7 @@ from django.urls import reverse
 from comments.models import Comment
 from django.template.defaultfilters import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
+from markdown_deux import markdown
 
 # Create your models here.
 # models Tag
@@ -77,3 +78,7 @@ class Post(models.Model):
     def viewed(self):
         self.views += 1
         self.save(update_fields=['views'])
+    
+    def get_markdown(self):
+        body = self.body
+        return markdown(body)

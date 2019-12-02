@@ -45,7 +45,7 @@
         <img class="img-responsive rounded" src="{{post1.image.url}}" style="max-width: 100%;">
         <!-- Post Content -->
         <div class="card-body">
-        {{post1.body|safe|linebreaks}}
+        {{post1.get_markdown|safe}}
         </div>
         <hr>
         <div class="d-flex flex-row flex-row-tag">
@@ -152,7 +152,7 @@
         </div>
         <!-- Post Content -->
         <div class="card-body">
-        {{post1.body|safe}}
+        {{post1.get_markdown|safe}}
         </div>
         <hr>
         <div class="d-flex flex-row flex-row-tag">
