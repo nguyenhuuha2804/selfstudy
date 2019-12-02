@@ -215,13 +215,18 @@ if USE_S3:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'selfstudy.custom_storages.PublicMediaStorage'
 else:
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR,'selfstudy/static')
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+    if DEBUG:
+        STATIC_URL = '/static/'
+        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'selfstudy/static/'),]
+        MEDIA_URL = '/media/'
+        MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+    else:
+        STATIC_URL = '/static/'
+        STATIC_ROOT = os.path.join(BASE_DIR, 'selfstudy/static/')
+        MEDIA_URL = '/media/'
+        MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Extra lookup directories for collectstatic to find static files
-
 
 # use it when deploy web
 
