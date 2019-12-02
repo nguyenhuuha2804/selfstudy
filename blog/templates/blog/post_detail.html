@@ -147,7 +147,7 @@
             <nav class="nav d-flex justify-content-between">
                 <p class="p-2"><i class="fa fa-user"></i> {{post1.author}}</p>
                 <p class="p-2"><i class="fa fa-eye"></i> {{post1.views}}</p>
-                <p class="p-2"># <a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</a></p>
+                <p class="p-2"><i class="fa fa-hashtag"></i><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}"> {{post1.category}}</a></p>
             </nav>
         </div>
         <!-- Post Content -->
