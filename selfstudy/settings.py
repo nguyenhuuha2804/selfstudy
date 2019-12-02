@@ -137,21 +137,21 @@ WSGI_APPLICATION = 'selfstudy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'selfstudy_database',
-#        'USER': 'huuha84',
-#        'PASSWORD': '',
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'selfstudy_database',
+        'USER': 'huuha84',
+        'PASSWORD': '',
+    }
+}
 
 # deploy web use it
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default=config('DATABASE_URL')
+#    )
+#}
 #--------
 
 
