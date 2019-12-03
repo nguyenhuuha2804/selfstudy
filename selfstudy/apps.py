@@ -4,7 +4,7 @@ from suit.menu import ParentItem, ChildItem
 
 class SuitConfig(DjangoSuitConfig):
     menu = (
-        ParentItem('Content', children=[
+        ParentItem('Chuyên mục', children=[
             ChildItem(model='demo.country'),
             ChildItem(model='demo.continent'),
             ChildItem(model='demo.showcase'),
