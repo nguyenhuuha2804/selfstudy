@@ -31,6 +31,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    #'selfstudy.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -117,7 +118,7 @@ ROOT_URLCONF = 'selfstudy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'home/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,6 +130,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'selfstudy.wsgi.application'
 
