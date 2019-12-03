@@ -3,11 +3,12 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 from django.urls import reverse
 from comments.models import Comment
 from django.template.defaultfilters import slugify
 from ckeditor_uploader.fields import RichTextUploadingField
-from markdown_deux import markdown
+from markdown2 import markdown
 
 # Create your models here.
 # models Tag
@@ -81,4 +82,5 @@ class Post(models.Model):
     
     def get_markdown(self):
         body = self.body
-        return markdown(body)
+        markdown_text = markdown(body)
+        return mark_safe(markdown_text)

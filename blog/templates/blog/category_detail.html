@@ -36,9 +36,11 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h4 class="card-title"><a href="{% url 'blog:post_detail' slug=obj.slug %}">{{obj.title}}</a></h5>
-                    <small class="p-2">
-                        {% fontawesome_icon 'user' %}  {{obj.author}}   {% fontawesome_icon 'eye' %} {{obj.views}} <a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=obj.category.slug %}">{% fontawesome_icon 'folder' %} {{obj.category}}</a>
-                    </small>
+                    <nav class="nav d-flex justify-content-between col-md-8">
+                        <small class="p-2"><i class="fa fa-user"></i> {{obj.author}}</small>
+                        <small class="p-2"><i class="fa fa-eye"></i> {{obj.views}}</small>
+                        <small class="p-2"><i class="fa fa-hashtag"></i><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=obj.category.slug %}"> {{obj.category}}</a></small>
+                    </nav>
                     <p class="card-text">{{obj.body|safe|truncatewords:15}}</p>
                     <small class="text-muted">Last updated: {{obj.published|timesince }} ago</small>
                 </div>
@@ -70,9 +72,11 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h4 class="card-title"><a href="{% url 'blog:post_detail' slug=obj.slug %}">{{obj.title}}</a></h5>
-                    <small class="p-2">
-                        {% fontawesome_icon 'user' %}  {{obj.author}}   {% fontawesome_icon 'eye' %} {{obj.views}} <a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=obj.category.slug %}">{% fontawesome_icon 'folder' %} {{obj.category}}</a>
-                    </small>
+                    <nav class="nav d-flex justify-content-between col-md-8">
+                        <small class="p-2"><i class="fa fa-user"></i> {{obj.author}}</small>
+                        <small class="p-2"><i class="fa fa-eye"></i> {{obj.views}}</small>
+                        <small class="p-2"><i class="fa fa-hashtag"></i><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=obj.category.slug %}"> {{obj.category}}</a></small>
+                    </nav>
                     <p class="card-text">{{obj.body|safe|truncatewords:15}}</p>
                     <small class="text-muted">Last updated: {{obj.published|timesince }} ago</small>
                 </div>

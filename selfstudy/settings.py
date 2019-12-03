@@ -59,21 +59,21 @@ CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
         'toolbar_YourCustomToolbarConfig': [
-            ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'],
-            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
-            ['Find', 'Replace', '-', 'SelectAll'],
+            ['Source', '-', 'Templates'],
+            ['Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+            ['Find', 'Replace'],
             ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton','HiddenField'],
+            ['Image', 'Flash', 'Table', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
             '/',
             ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-                       'Language'],
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Language','HorizontalRule'],
             ['Link', 'Unlink', 'Anchor'],
-            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
             '/',
             ['Styles', 'Format', 'Font', 'FontSize'],
-            ['TextColor', 'BGColor'],['Maximize', 'ShowBlocks'],['About'],['Preview','Maximize'],
-            ['CodeSnippet'],['Youtube'],['toc']
+            ['TextColor', 'BGColor'],
+            ['CodeSnippet'],['Youtube'],['toc'],
+            ['Maximize', 'ShowBlocks'],['About'],
         ],
         'toolbar': 'YourCustomToolbarConfig',  
         'tabSpaces': 4,
@@ -215,16 +215,13 @@ if USE_S3:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'selfstudy.custom_storages.PublicMediaStorage'
 else:
+    STATIC_URL = '/static/'
     if DEBUG:
-        STATIC_URL = '/static/'
         STATICFILES_DIRS = [os.path.join(BASE_DIR, 'selfstudy/static/'),]
-        MEDIA_URL = '/media/'
-        MEDIA_ROOT = os.path.join(BASE_DIR,'media')
     else:
-        STATIC_URL = '/static/'
         STATIC_ROOT = os.path.join(BASE_DIR, 'selfstudy/static/')
-        MEDIA_URL = '/media/'
-        MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Extra lookup directories for collectstatic to find static files
 

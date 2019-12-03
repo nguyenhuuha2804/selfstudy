@@ -38,14 +38,14 @@
             <nav class="nav d-flex justify-content-between">
                 <p class="p-2"><i class="fa fa-user"></i> {{post1.author}}</p>
                 <p class="p-2"><i class="fa fa-eye"></i> {{post1.views}}</p>
-                <p class="p-2"># <a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}">{{post1.category}}</p>
+                <p class="p-2"><i class="fa fa-hashtag"></i><a style="text-decoration:none;color:black" href="{% url 'blog:category_detail' slug=post1.category.slug %}"> {{post1.category}}</p>
             </nav>
         </div>
         <!-- Preview Image -->
         <img class="img-responsive rounded" src="{{post1.image.url}}" style="max-width: 100%;">
         <!-- Post Content -->
-        <div class="card-body">
-        {{post1.get_markdown|safe}}
+        <div class="card-body content-markdown">
+        {{post1.get_markdown}}
         </div>
         <hr>
         <div class="d-flex flex-row flex-row-tag">
@@ -151,8 +151,8 @@
             </nav>
         </div>
         <!-- Post Content -->
-        <div class="card-body">
-        {{post1.get_markdown|safe}}
+        <div class="card-body content-markdown">
+        {{post1.get_markdown}}
         </div>
         <hr>
         <div class="d-flex flex-row flex-row-tag">

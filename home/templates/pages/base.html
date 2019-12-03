@@ -143,11 +143,25 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/feather.min.js' %}"></script>
+    <script  src="{% static 'js/marked.min.js' %}"></script>
     <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
     <script  src="{% static 'js/function.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $(".content-markdown").each(function(){
+                var content = $(this).text()
+                console.log(content)
+                var markedContent = marked(content)
+                console.log(markedContent)
+            })
+            $(".content-markdown img").each(function(){
+                $(this).addClass("img-responsive")
+            })
+            $(".content-markdown iframe").each(function(){
+                $(this).addClass("img-responsive")
+            })
+            
+
             $(".comment-reply-btn").click(function(event){
             event.preventDefault();
             $(this).parent().next(".comment-reply").fadeToggle();
