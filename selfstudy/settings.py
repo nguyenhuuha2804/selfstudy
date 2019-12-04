@@ -31,7 +31,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    #'selfstudy.apps.SuitConfig',
+    'bootstrap_admin', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_select2',
     'markdown2',
     'fontawesome',
     'ckeditor',
@@ -54,6 +53,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+BOOTSTRAP_ADMIN_SIDEBAR_MENU = False
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
@@ -119,7 +120,7 @@ ROOT_URLCONF = 'selfstudy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'home/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'selfstudy/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

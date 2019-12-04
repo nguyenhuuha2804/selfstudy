@@ -27,10 +27,6 @@ from django.conf.urls import url
 from home.sitemaps import PostSitemap, StaticViewSitemap
 
 
-admin.site.site_header = 'Self-Study Administrator'
-admin.site.site_title = 'Self-Study Administrator'
-admin.site.index_title = 'Self-Study Administration'
-
 sitemaps = {
     'posts': PostSitemap,
     'static': StaticViewSitemap,
